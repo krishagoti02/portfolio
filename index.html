@@ -1,0 +1,540 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>Krisha Goti - Portfolio</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Two columns */
+            gap: 20px; /* Spacing between columns */
+        }
+        .skills-column {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .skills-column h3 {
+            color: #2c3e50;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        .skills-column p {
+            color: #7f8c8d;
+            font-size: 0.95em;
+        }
+        .certifications-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .certification-box {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px; /* Reduced padding */
+            width: 45%;
+            margin-bottom: 15px; /* Reduced margin */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .certification-box h3 {
+            color: #2c3e50;
+            font-size: 1.2em; /* Reduced font size */
+            margin-bottom: 8px;
+        }
+        .certification-box p {
+            margin: 4px 0;
+            color: #7f8c8d;
+            font-size: 0.9em; /* Reduced font size for paragraph */
+        }
+        #header .copyright {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.8em;
+            list-style: none;
+            margin: 1em 0 0 0;
+            padding: 0;
+        }
+
+		#header .copyright li {
+			border-left: solid 1px rgba(255, 255, 255, 0.25);
+			display: inline-block;
+			line-height: 1em;
+			margin-left: 0.75em;
+			padding-left: 0.75em;
+		}
+
+        #header .copyright li:first-child {
+            border-left: 0;
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        #header .copyright li a {
+            color: inherit;
+        }
+
+        #header .icons {
+            margin-top: 10px; /* Adds some space above the icons */
+            justify-content: center; /* Center the icons */
+        }
+
+        #header .icons li {
+            display: inline-block;
+            margin: 0 1px; /* Space between icons */
+        }
+
+        #header .icons a {
+            color: rgba(44, 62, 80, 0.8); /* Adjust color for better visibility in header */
+            font-size: 1.0em; /* Adjust icon size */
+        }
+
+
+        .project-image {
+            width: 100%; /* Set the image width to 100% of its container */
+            height: 200px; /* Set a fixed height for the images */
+            object-fit: cover; /* Crop the image to fit the container without stretching */
+            border-radius: 15px; /* Keep the curved corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow */
+        }
+
+
+        .experience-item button {
+            background-color: rgba(255, 255, 255, 0.277); /* Light blue background */
+            color: rgba(44, 62, 80, 0.8); /* Dark text color for contrast */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Rounded corners */
+            padding: 10px 15px; /* Padding for size */
+            font-size: 0.9em; /* Font size */
+            cursor: pointer; /* Pointer cursor on hover */
+            justify-items: center;
+            transition: background-color 0.3s; /* Transition for smooth hover effect */
+        }
+
+        .experience-item button:hover {
+            background-color: #c9d5e2; /* Slightly darker blue on hover */
+        }
+
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .profile-picture {
+            width: 150px; /* Adjust the size as needed */
+            height: 150px;
+            border-radius: 50%; /* This makes the image circular */
+            object-fit: cover; /* Ensures the image is not stretched */
+            margin-bottom: 20px; /* Adds some space below the image */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow */
+        }
+        #header{
+            flex: 0;
+        }
+        #header .inner {
+            text-align: center; /* Center-aligns all content inside the header */
+        }
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Two columns */
+            gap: 20px; /* Spacing between items */
+        }
+        .experience-item {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .experience-item h3 {
+            color: #2c3e50;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        .experience-item p {
+            color: #7f8c8d;
+            font-size: 0.95em;
+            margin-bottom: 10px;
+        }
+        .experience-item strong {
+            color: #34495e; /* Darker shade for company names */
+        }
+
+    </style>
+</head>
+<body class="is-preload">
+
+    <!-- Header -->
+     
+    <header id="header">
+        <div class="inner">
+            <img src="profile-picture.jpg" alt="Krisha Goti" class="profile-picture" />
+            <h1>Krisha Goti: Data Enthusiast & Creative Problem Solver</h1>
+            <p>Software engineer passionate about Data Science, Python, and machine learning. Preparing for a Master’s in Data Science while exploring creativity.</p>
+            <ul class="icons">
+                <li><a href="https://www.linkedin.com/in/krisha-goti-2141bb180/" class="bi bi-linkedin"><span class="label">LinkedIn</span></a></li>
+                <li><a href="https://github.com/krishagoti02" class="bi bi-github"><span class="label">Github</span></a></li>
+                <li><a href="mailto:krishagoti02@gmail.com" class="bi bi-envelope"><span class="label">Email</span></a></li>
+            </ul>
+            <ul class="copyright">
+                <li>Designer: <a> Krisha Goti</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div id="main">
+
+        <!-- About Me -->
+        <section id="about">
+            <header class="major">
+                <h2>About Me</h2>
+            </header>
+            <p>Hello! I’m Krisha Goti, a data enthusiast and creative problem solver driven by curiosity and innovation. My journey into the world of data science began with a fascination for patterns and stories hidden within numbers. Armed with a BTech (Hons.) in Computer Engineering from NMIMS MPSTME, I specialize in transforming raw data into actionable insights using Python and machine learning.</p>
+            <p>Beyond the realm of algorithms and analytics, I am passionate about creativity. Whether it’s painting vibrant landscapes or editing compelling videos, I believe that artistic expression allows me to approach challenges from unique angles. This creative lens enriches my technical work, enabling me to merge logic with imagination.</p>
+            <p>As I prepare for my Master’s in Data Science, I’m eager to deepen my expertise and explore new frontiers in the field. I invite you to dive into my portfolio, where you’ll find a collection of projects that showcase my skills and dedication to making a positive impact through technology.</p>
+        </section>
+
+        <!-- My Projects -->
+        <section id="projects">
+            <header class="major">
+                <h2>My Projects</h2>
+                <p>A collection of my recent technical works. Click on the project names to explore more details.</p>
+            </header>
+            <div class="row">
+                <article class="col-6 col-12-xsmall work-item">
+                    <h3><a href="https://github.com/krishagoti02/Music-Recommendation-System-Using-Collaborative-Filtering-and-Popularity-based-Algorithms" class="project-link" data-project="music-recommendation">Music Recommendation System</a></h3>
+                    <img src="images/thumbs/music-recommendation-image.jpg" alt="Music Recommendation System" class="project-image"/>
+                    <p><strong>Description:</strong> Developed a machine learning-based recommendation engine to suggest music based on user preferences.</p>
+                </article>
+                <article class="col-6 col-12-xsmall work-item">
+                    <h3><a href="https://github.com/krishagoti02/Face-Detection-System" class="project-link" data-project="Face-Detection-System">Face Recognition System</a></h3>
+                    <img src="images/thumbs/face.jpg" alt="Face detection System" class="project-image"/>
+                    <p><strong>Description:</strong> Built an AI system for accurate face detection and recognition using MTCNN and OpenCV.</p>
+                </article>
+                <article class="col-6 col-12-xsmall work-item">
+                    <h3><a href="https://github.com/krishagoti02/Intelligent-Document-Organization-System" class="project-link" data-project="intelligent-docs">Intelligent Document Organization</a></h3>
+                    <img src="images/thumbs/intelligent-docs-image.jpg" alt="Intelligent Document Organization" class="project-image"/>
+                    <p><strong>Description:</strong> Built an intelligent document management system to categorize and organize files on Google Drive based on content similarity.</p>
+                </article>
+                
+                <article class="col-6 col-12-xsmall work-item">
+                    <h3><a href="https://github.com/krishagoti02/GitLab-Project-Group-Management-GUI" class="project-link" data-project="gitlab-utility">GitLab Interaction Utility</a></h3>
+                    <img src="images/thumbs/gitlab-utility-image.jpg" alt="GitLab Interaction Utility" class="project-image"/>
+                    <p><strong>Description:</strong> Designed a GUI tool for managing GitLab repositories and team permissions with enhanced security features.</p>
+                </article>
+                
+                <article class="col-6 col-12-xsmall work-item">
+                    <h3><a href="https://github.com/krishagoti02/Multilingual-Text-Translation-and-Speech-Synthesis" class="project-link" data-project="translation-tts">Translation & Text-to-Speech System</a></h3>
+                    <img src="images/thumbs/translation-tts-image.jpg" alt="Translation & Text-to-Speech System" class="project-image"/>
+                    <p><strong>Description:</strong> Developed a translation and text-to-speech model using Google Cloud APIs, providing real-time translations with speech output.</p>
+                </article>
+                
+                <article class="col-6 col-12-xsmall work-item">
+                    <h3><a href="https://github.com/krishagoti02/Image-Segmentation" class="project-link" data-project="object-counting">Image Segmentation & Object Counting</a></h3>
+                    <img src="images/thumbs/object-counting-image.jpg" alt="Image Segmentation & Object Counting" class="project-image"/>
+                    <p><strong>Description:</strong> Created a system to count objects in images using segmentation techniques, optimizing the process for large datasets.</p>
+                </article>                
+                <!-- Add other project articles here -->
+            </div>
+        </section>
+
+        <!-- Professional Experience -->
+        <section id="experience">
+            <header class="major">
+                <h2>Professional Experience</h2>
+                <p>Here are some highlights from my professional journey, showcasing my skills and contributions.</p>
+            </header>
+            <div class="experience-grid">
+                <div class="experience-item">
+                    <h3>Software Engineer (Python)</h3>
+                    <p><strong>Drishti Emergency Services</strong> | May 2023 - September 2023</p>
+                    <p>Developed Python scripts and integrated Google Cloud APIs for text-to-speech translation and performance tracking.</p>
+                    <button onclick="openDrishtiModal()">More Details</button>
+                </div>
+                
+                <div class="experience-item">
+                    <h3>Software Developer (IoT & Web)</h3>
+                    <p><strong>Rinira Technologies</strong> | December 2021 - April 2022</p>
+                    <p>Analyzed data flows for IoT projects and optimized web applications.</p>
+                    <button onclick="openRiniraModal()">More Details</button>
+                </div>
+                
+                <div class="experience-item">
+                    <h3>Project Intern</h3>
+                    <p><strong>Samagra Foundation</strong> | August 2021 - September 2022</p>
+                    <p>Contributed to fundraising efforts for underprivileged children, focusing on combating malnutrition and developing skills in community engagement.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Skills -->
+        <section id="skills">
+            <header class="major">
+                <h2>Skills</h2>
+            </header>
+            <div class="skills-grid">
+                <div class="skills-column">
+                    <h3>Programming Languages</h3>
+                    <p>C, C++, Python</p>
+                </div>
+        
+                <div class="skills-column">
+                    <h3>Data Analysis and Visualization</h3>
+                    <p>Pandas, Numpy, Matplotlib, Seaborn</p>
+                </div>
+        
+                <div class="skills-column">
+                    <h3>Machine Learning and AI</h3>
+                    <p>TensorFlow, PyTorch, scikit-learn</p>
+                </div>
+        
+                <div class="skills-column">
+                    <h3>Data Mining and Text Analysis</h3>
+                    <p>Natural Language Processing (NLP)</p>
+                </div>
+        
+                <div class="skills-column">
+                    <h3>Database Management</h3>
+                    <p>SQL, NoSQL</p>
+                </div>
+        
+                <div class="skills-column">
+                    <h3>Web Technologies</h3>
+                    <p>HTML, CSS, JavaScript, Angular</p>
+                </div>
+        
+                <div class="skills-column">
+                    <h3>Cloud Platforms</h3>
+                    <p>AWS, Google Cloud, Azure</p>
+                </div>
+        
+                <div class="skills-column">
+                    <h3>Version Control</h3>
+                    <p>Git</p>
+                </div>
+        
+                <div class="skills-column">
+                    <h3>API Integration</h3>
+                    <p>GitLab API, Google Cloud Services APIs</p>
+                </div>
+        
+                <div class="skills-column">
+                    <h3>Tools</h3>
+                    <p>Visual Studio, Kali Linux, StarUML</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Certifications & Learning -->
+        <section id="certifications">
+            <header class="major">
+                <h2>Certifications & Specializations</h2>
+                <p>I have completed several industry-recognized certifications to enhance my skills in data science and UX design:</p>
+            </header>
+            <div class="certifications-container">
+                <div class="certification-box">
+                    <h3>Google UX Design</h3>
+                    <p><strong>Provider:</strong> Google</p>
+                    <p>Developed foundational skills in user experience design, including wireframing, prototyping, and user research methodologies.</p>
+                </div>
+        
+                <div class="certification-box">
+                    <h3>IBM Data Science</h3>
+                    <p><strong>Provider:</strong> IBM</p>
+                    <p>Gained hands-on experience in data analysis, machine learning, and data visualization techniques using Python and SQL.</p>
+                </div>
+        
+                <div class="certification-box">
+                    <h3>Machine Learning</h3>
+                    <p><strong>Provider:</strong> University of Washington</p>
+                    <p>Explored key concepts of machine learning, including supervised and unsupervised learning, model evaluation, and real-world applications.</p>
+                </div>
+        
+                <div class="certification-box">
+                    <h3>Introduction to Data Science</h3>
+                    <p><strong>Provider:</strong> IBM</p>
+                    <p>Acquired a solid understanding of data science tools and techniques, including data wrangling, analysis, and model building.</p>
+                </div>
+        
+                <div class="certification-box">
+                    <h3>Applied Data Science</h3>
+                    <p><strong>Provider:</strong> IBM</p>
+                    <p>Applied data science principles in real-world projects, utilizing machine learning algorithms and advanced statistical techniques.</p>
+                </div>
+        
+                <div class="certification-box">
+                    <h3>Data Science Fundamentals with Python and SQL</h3>
+                    <p><strong>Provider:</strong> IBM</p>
+                    <p>Gained proficiency in Python programming and SQL queries for effective data management, manipulation, and analysis.</p>
+                </div>
+            </div>
+        </section>
+   </div>
+       <!-- Rinira Technologies Modal -->
+    <div id="rinira-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeRiniraModal()">&times;</span>
+            <h2>Software Developer Intern at Rinira Technologies</h2>
+            <h4>Project: RINNI Device</h4>
+            <ul>
+                <li>Developed Wi-Fi connectivity for the RINNI device through a dedicated app interface.</li>
+                <li>Worked on hardware-to-software integration, ensuring seamless communication between system components.</li>
+                <li>Set up and maintained server connections to manage and optimize device interactions efficiently.</li>
+            </ul>
+    
+            <h4>Project: Cohortee</h4>
+            <ul>
+                <li>Executed UI/UX improvements to enhance user experience and maintain visual consistency.</li>
+                <li>Conducted research and analysis on marketing strategies to align technical development with business goals.</li>
+                <li>Gained hands-on experience in front-end development using React, improving proficiency in modern web technologies.</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Drishti Emergency Services Modal -->
+    <div id="drishti-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDrishtiModal()">&times;</span>
+            <h2>Software Engineer Intern (Python) at Drishti Emergency Services</h2>
+            <p>Drishti Emergency Services is a dynamic organization focused on innovative solutions for emergency response and robotics.</p>
+            <p>Key Contributions:</p>
+            <ul>
+                <li>Developed Python scripts using Google Cloud APIs for translation and text-to-speech.</li>
+                <li>Created an application for audio announcements with VLC and Firestore integration.</li>
+                <li>Managed robot performance metrics with AWS DynamoDB.</li>
+                <li>Extracted text from files using Google Drive API.</li>
+                <li>Worked on llm models</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-description"></p>
+        </div>
+    </div>
+
+    <div id="experience-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeExperienceModal()">&times;</span>
+            <h2 id="experience-modal-title"></h2>
+            <p id="experience-modal-description"></p>
+        </div>
+    </div>
+
+    <script>
+                // Script to handle Drishti Modal
+        function openDrishtiModal() {
+            document.getElementById('drishti-modal').style.display = "block";
+        }
+
+        function closeDrishtiModal() {
+            document.getElementById('drishti-modal').style.display = "none";
+        }
+
+        function openRiniraModal() {
+            document.getElementById('rinira-modal').style.display = "block";
+        }
+
+        function closeRiniraModal() {
+            document.getElementById('rinira-modal').style.display = "none";
+        }
+
+        // Close the modal when clicking outside of it
+        window.onclick = function(event) {
+            const riniraModal = document.getElementById('rinira-modal');
+            const drishtiModal = document.getElementById('drishti-modal');
+            if (event.target === riniraModal) {
+                riniraModal.style.display = "none";
+            }
+            if (event.target === drishtiModal) {
+                drishtiModal.style.display = "none";
+            }
+        }
+        // Script to handle modals
+        const projectLinks = document.querySelectorAll('.project-link');
+        projectLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const projectTitle = this.innerText;
+                const projectDescription = this.nextElementSibling.innerHTML;
+                document.getElementById('modal-title').innerText = projectTitle;
+                document.getElementById('modal-description').innerHTML = projectDescription;
+                document.getElementById('project-modal').style.display = "block";
+            });
+        });
+
+        const experienceLinks = document.querySelectorAll('.experience-link');
+        experienceLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const experienceTitle = this.innerText;
+                const experienceDescription = this.nextElementSibling.innerHTML;
+                document.getElementById('experience-modal-title').innerText = experienceTitle;
+                document.getElementById('experience-modal-description').innerHTML = experienceDescription;
+                document.getElementById('experience-modal').style.display = "block";
+            });
+        });
+
+        function closeModal() {
+            document.getElementById('project-modal').style.display = "none";
+        }
+
+        function closeExperienceModal() {
+            document.getElementById('experience-modal').style.display = "none";
+        }
+
+        // Close the modal when clicking outside of it
+        window.onclick = function(event) {
+            const projectModal = document.getElementById('project-modal');
+            const experienceModal = document.getElementById('experience-modal');
+            if (event.target === projectModal) {
+                projectModal.style.display = "none";
+            }
+            if (event.target === experienceModal) {
+                experienceModal.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
